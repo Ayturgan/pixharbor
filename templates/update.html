@@ -1,0 +1,60 @@
+{%extends 'base.html'%} {% block content %}
+
+
+<form method="post" class="p-4 bg-light rounded form_upload" enctype="multipart/form-data">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger mb-4">
+        <a>{{ messages[0] }}</a>
+    </div>
+    {% endif %} {% endwith %}
+    <div class="container_upload">
+        <div class="wrapper_upload">
+            <div class="image_upload">
+                <img id="img_upl" class="hidden" src="" alt="">
+            </div>
+            <div class="content_upload">
+                <div class="icon_upload">
+                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                </div>
+                <div class="text">
+                    No file chosen, yet!
+                </div>
+            </div>
+            <div id="cancel-btn">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <div class="file-name">
+                File name here
+            </div>
+        </div>
+        <button onclick="defaultBtnActive()" id="custom-btn" type="button">Choose a file</button>
+        <input id="default-btn" type="file" name="image" hidden>
+    </div>
+    <div class="upload_content">
+
+
+        <div class="">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control form-control-lg" type="text" name="title" />
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control form-control-lg" name="content" rows="4" cols="50"></textarea>
+            </div>
+        </div>
+        <button class="create_btn " type="submit">
+            Update
+        </button>
+
+
+    </div>
+
+
+
+
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+.post-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.post-image {
+    flex: 1;
+    max-width: 50%;
+    height: 500px; /* Определенная высота для картинки */
+    overflow: hidden; /* Скрыть часть изображения, которая выходит за рамки */
+    position: relative; /* Позиционирование для вложенного изображения */
+    border-radius: 20px;
+}
+
+.post-image img {
+    background-size: cover;
+    position: absolute; /* Абсолютное позиционирование внутри .post-image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Подгоняет изображение по размеру контейнера, сохраняя пропорции */
+}
+
+.post-details {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+    height: 500px;
+}
+
+.post-description {
+    margin-bottom: 20px;
+    height: 320px;
+    overflow-y: auto;
+}
+
+.download-button {
+    margin-left: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.download-button:hover {
+    background-color: #6b6b6b;
+}
+
+.comments {
+    border-top: 1px solid #ccc;
+}
+
+.comment {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+}

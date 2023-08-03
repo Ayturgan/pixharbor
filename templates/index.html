@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pixharbor</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Raleway:wght@300&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+
+</head>
+
+<body>
+    <header class="main_header">
+        <div>
+            <a class="title_logo" href="http://127.0.0.1:5000/">
+                PIXHARBOR
+            </a>
+        </div>
+        <nav>
+            <ul class="desktop-menu">
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="http://127.0.0.1:5000/gallery">Gallery</a></li>
+                <li><a href="#">Feedback</a></li>
+            </ul>
+        </nav>
+
+
+        {% if current_user and current_user.is_authenticated %}
+        <a href="http://127.0.0.1:5000/gallery" class="b1">Let's Go</a>
+        {% else %}
+        <button id="form-open" class="b1">Login</button>
+        {% endif %}
+
+
+
+        <input type="checkbox" id="active">
+        <label for="active" class="menu-btn">
+            <i class="material-icons" id="menu-icon">
+                menu
+            </i>
+        </label>
+        <div class="wrapper">
+            <ul class="mobile-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Feedback</a></li>
+            </ul>
+        </div>
+
+
+    </header>
+    <!-- Home -->
+    <section class="home">
+        <div class="content_gallery">
+            <div class="gallery_back">
+                <div class="mosaic-gallery">
+                    <img src="https://source.unsplash.com/featured/?natural&1" alt="small trees">
+                    <img src="https://source.unsplash.com/featured/?natural&2" alt="a girl with a camera">
+                    <img src="https://source.unsplash.com/featured/?natural&3" alt="the sky">
+                    <img src="https://source.unsplash.com/featured/?natural&4" alt="some purple flowers">
+                    <img src="https://source.unsplash.com/featured/?natural&5" alt="a canyon">
+                </div>
+            </div>
+        </div>
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>
+            <!-- Login From -->
+            <div class="form login_form">
+                <form action="/login" method="POST">
+                    <h2>Login</h2>
+
+                    {% with messages = get_flashed_messages() %} {% if messages %}
+                    <div class="notification is-danger mb-4">
+                        <p>{{ messages[0] }}</p>
+                    </div>
+                    {% endif %} {% endwith %}
+
+
+                    <div class="input_box">
+                        <input type="email" name="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" name="password" placeholder="Enter your password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+
+                    <div class="option_field">
+                        <span class="checkbox">
+                            <input type="checkbox" id="check" />
+                            <label for="check">Remember me</label>
+                        </span>
+                        <a href="#" class="forgot_pw">Forgot password?</a>
+                    </div>
+
+                    <button class="button">Login Now</button>
+
+                    <div class="login_signup">Don't have an account? <a href="#" id="signup">Sign Up</a></div>
+                </form>
+            </div>
+
+            <!-- Signup From -->
+            <div class="form signup_form">
+                <form action="/signup" method="post" enctype="multipart/form-data">
+                    <h2>Sign Up</h2>
+                    {% with messages = get_flashed_messages() %} {% if messages and
+                    'email' in messages[0] %}
+                    <div class="notification is-danger mb-4">
+                        <p>{{ messages[0] }}</p>
+
+                    </div>
+                    {% endif %} {% endwith %}
+
+                    <div class="input_box">
+                        <input type="username" name="username" placeholder="Enter your username" required />
+                        <i class="uil uil-user user"></i>
+                    </div>
+
+                    <div class="input_box">
+                        <input type="email" name="email" placeholder="Enter your email" aria-describedby="emailHelp"
+                            required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+
+                    <div class="input_box">
+                        <input type="password" name="password" placeholder="Create password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Confirm password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    {% with messages = get_flashed_messages() %} {% if messages and
+                    'password' in messages[0] %}
+                    <div class="notification is-danger">
+                        <a>{{ messages[0] }}</a>
+                    </div>
+                    {% endif %} {% endwith %}
+
+
+                    <button type="submit" name="create" class="button">Sign Up Now</button>
+
+                    <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                </form>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+    {% if show_form %}
+    <script>
+        window.addEventListener('load', function () {
+            document.querySelector('.form.login_form').classList.add('show');
+        });
+    </script>
+    {% endif %}
+
+
+
+
+
+
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

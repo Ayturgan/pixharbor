@@ -1,0 +1,109 @@
+{%extends 'base.html'%} {% block content %}
+<style>
+    #comment-input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        position: relative;
+        border-radius: 50px;
+    }
+
+    #comment-send {
+        position: absolute;
+        padding: 9px;
+        margin-top: 20px;
+        width: 50px;
+        text-align: center;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        background-color: #212121;
+        color: #fff;
+        border-radius: 50%;
+        right: 95px;
+    }
+
+    #comment-send:focus {
+        outline: none;
+        border: none;
+    }
+
+
+    #comment-send:hover {
+        background-color: #9b9b9b;
+    }
+</style>
+<div data-post-id="{{ post.id }}" class="post-container">
+    <div class="post-image">
+        <img src="{{ url_for('static', filename=post.image) }}" alt="Post Image">
+    </div>
+    <div class="post-details">
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="post" onsubmit="return confirmDelete()">
+            <a href="{{ url_for('static', filename=post.image) }}" class="download-button"
+                download="image.jpg">Download</a>
+            {% if current_user.id == post.author.id %}
+            <a href=" http://127.0.0.1:5000/post/{{post.id}}/update" class="download-button">Update</a>
+
+            <button type="submit" class="download-button">Delete</button>
+            {% endif %}
+        </form>
+
+
+
+
+        <div class="post-description">
+            <h5 style="opacity: .5;">Author: <a href="{{ url_for('profile', id=post.author.id) }}">{{
+                    post.author.username
+                    }}</a></h5>
+            <h1 style="font-weight: bold;">{{ post.title }}</h1>
+            <h4>{{ post.content }}</h4>
+
+            <div class="comments">
+                <h4 style="margin-top: 10px; opacity: .4;">Comments:</h4>
+                {% for comment in comments %}
+                <div class="comment">{{ comment.author.username }}: {{ comment.content }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <input type="text" id="comment-input" placeholder="Add a comment...">
+        <button type="button" id="comment-send" onclick="addComment()"><ion-icon
+                name="send-outline"></ion-icon></button>
+    </div>
+</div>
+
+
+<script>
+    function addComment() {
+        var commentContent = document.getElementById("comment-input").value;
+        var postId = document.querySelector('.post-container').getAttribute('data-post-id');
+
+        // Отправляем запрос на сервер
+        fetch(`/add_comment/${postId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ content: commentContent }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Добавляем новый комментарий на страницу
+                var commentsDiv = document.querySelector(".comments");
+                var newCommentDiv = document.createElement("div");
+                newCommentDiv.className = "comment";
+                newCommentDiv.textContent = data.username + ": " + data.content; // Используем имя пользователя здесь
+                commentsDiv.appendChild(newCommentDiv);
+
+                // Очищаем поле ввода
+                document.getElementById("comment-input").value = "";
+            });
+    }
+</script>
+
+
+
+
+
+{% endblock %}

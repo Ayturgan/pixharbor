@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Pixharbor</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/create.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/post_detail.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <div class="container1">
+
+        <header class="header">
+            <div>
+                <a class="logo" href="http://127.0.0.1:5000/gallery">
+                    PIXHARBOR
+                </a>
+            </div>
+
+
+            <form action="/search" method="get" class="search-container">
+                <input type="text" id="elastic" placeholder="Search here ...">
+            </form>
+
+            <div class="dropdown">
+                <div class="btnpro">
+
+                    <a href="http://127.0.0.1:5000/current_profile">
+                        {{ current_user.username }}
+                    </a>
+                    <a href="http://127.0.0.1:5000/current_profile"><img
+                            src="{{ url_for('static', filename=current_user.image) }}" alt="profile"></a>
+                    <div onclick="myFunction()" class="dropbtn"><ion-icon name="chevron-down-outline"></ion-icon></div>
+                </div>
+
+
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="http://127.0.0.1:5000/upload/">New Post</a>
+                    <a href="http://127.0.0.1:5000/posts/">My Posts</a>
+                    <a href="http://127.0.0.1:5000/{{ user.id }}/setting/">Settings</a>
+                    <a href="http://127.0.0.1:5000/logout/">Log Out</a>
+                </div>
+            </div>
+
+        </header>
+
+        <main class="content">
+            {% block content %}
+
+            {% endblock %}
+        </main>
+
+
+
+
+        <footer class="footer">
+            <p>&copy; 2023 Pixharbor. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/create.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

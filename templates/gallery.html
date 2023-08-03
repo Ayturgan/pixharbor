@@ -1,0 +1,15 @@
+{%extends 'base.html'%} {% block content %}
+
+<div class="gallery" id="gallery">
+    {% for post in posts %}
+    {% set image_url = url_for('static', filename=post.image) %}
+    <a href="http://127.0.0.1:5000/post/{{post.id}}" class="image" style="background-image: url('{{ image_url }}');">
+        <div class="overlay">
+            <h2>{{post.title}}</h2>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

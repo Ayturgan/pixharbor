@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+.upload_content {
+    margin-top: 60px;
+}
+.form_upload {
+    display: flex;
+    flex-direction: column; /* Устанавливает вертикальное направление */
+    align-items: center; /* Центрирует элементы по горизонтали */
+    justify-content: center;
+}
+.container_upload {
+    height: 350px;
+    width: 430px;
+    position: relative;
+}
+.container_upload .wrapper_upload {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px dashed #c2cdda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.wrapper_upload.active {
+    border: none;
+}
+.wrapper_upload .image_upload {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper_upload img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.wrapper_upload .icon_upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    color: #9658fe;
+}
+.wrapper_upload .text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #5b5b7b;
+}
+.wrapper_upload #cancel-btn ion-icon {
+    position: absolute;
+    font-size: 35px;
+    right: 15px;
+    top: 15px;
+    color: #9658fe;
+    cursor: pointer;
+    display: none;
+}
+.wrapper_upload.active:hover #cancel-btn ion-icon {
+    display: block;
+}
+.wrapper_upload #cancel-btn ion-icon:hover {
+    color: #e74c3c;
+}
+.wrapper_upload .file-name {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 18px;
+    color: #fff;
+    display: none;
+    background: linear-gradient(135deg, #3a8ffe 0%, #9658fe 100%);
+}
+.wrapper_upload.active:hover .file-name {
+    display: block;
+}
+.container_upload #custom-btn {
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3a8ffe 0%, #9658fe 100%);
+}
+.create_btn {
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(135deg, #3a8ffe 0%, #9658fe 100%);
+}
+.hidden {
+    display: none;
+}
