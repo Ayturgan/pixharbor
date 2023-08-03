@@ -5,11 +5,34 @@
     {% set image_url = url_for('static', filename=post.image) %}
     <a href="http://127.0.0.1:5000/post/{{post.id}}" class="image" style="background-image: url('{{ image_url }}');">
         <div class="overlay">
-            <h2>{{post.title}}</h2>
+            <h2 class="title_image">{{post.title}}</h2>
         </div>
     </a>
     {% endfor %}
 </div>
 
+
+<script>
+    document.querySelector("#elastic").oninput = function () {
+        let val = this.value.trim().toUpperCase();
+        let elasticItems = document.querySelectorAll(".image");
+        if (val != "") {
+            elasticItems.forEach(function (elem) {
+                let h2 = elem.querySelector("h2");
+                if (h2.innerText.toUpperCase().search(val) == -1) {
+                    elem.classList.add("hide");
+                } else {
+                    elem.classList.remove("hide");
+                }
+            });
+        } else {
+            elasticItems.forEach(function (elem) {
+                let h2 = elem.querySelector("h2");
+                elem.classList.remove("hide");
+            });
+        }
+    };
+
+</script>
 
 {% endblock %}
