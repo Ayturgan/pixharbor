@@ -30,7 +30,6 @@ body {
 
 .header {
     z-index: 99;
-    padding: 0;
     margin: 0;
     height: 80px;
     position: fixed;
@@ -192,11 +191,6 @@ body {
     display: none;
 }
 
-mark {
-    background: #051b33d1;
-    color: aliceblue;
-}
-
 .image .overlay {
     color: white;
     display: none;
@@ -224,6 +218,69 @@ mark {
 
 .image:nth-child(2n) {
     grid-row: span 2;
+}
+@media (max-width: 1200px) {
+    .gallery {
+        grid-template-columns: repeat(
+            4,
+            1fr
+        ); /* 4 колонки для экранов шириной до 1200px */
+    }
+}
+
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(
+            3,
+            1fr
+        ); /* 3 колонки для экранов шириной до 900px */
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(
+            2,
+            1fr
+        ); /* 2 колонки для экранов шириной до 600px */
+    }
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px 60px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        height: 130px;
+    }
+    .content {
+        padding: 130px 40px 20px 40px;
+    }
+}
+
+@media (max-width: 425px) {
+    .gallery {
+        grid-template-columns: repeat(
+            1,
+            1fr
+        ); /* 1 колонка для экранов шириной до 400px */
+    }
+}
+
+@media (max-width: 405px) {
+    .search-container {
+        margin: 0 20px;
+        width: 100%;
+    }
+    .logo {
+        font-size: 30px;
+    }
+    .dropdown {
+        margin: 9px 0;
+    }
+    .header {
+        height: 154px;
+    }
 }
 
 /* ////////////////////////////// MAIN GALLERY FOOTER //////////////////////////////////// */
