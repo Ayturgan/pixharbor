@@ -91,7 +91,6 @@ def index():
 
 @app.route('/gallery/')
 @login_required
-
 def gallery():
     all_posts = Posts.select()
     return render_template('gallery.html', posts=all_posts)
@@ -106,12 +105,6 @@ def current_profile():
 def profile(id):
     profile_user = Users.select().where(Users.id == id).first()
     return render_template('profile.html', user=profile_user)
-
-
-@app.route('/setting/')
-@login_required
-def setting_profile():
-    return render_template('settings.html')
 
 
 @app.route('/posts/', methods=['GET', 'POST'])
@@ -144,10 +137,8 @@ def add_comment(post_id):
 def post_detail(id):
     post = Posts.select().where(Posts.id == id).first()
     if post:
-        # Получаем все комментарии для этого поста
         comments = Comments.select().where(Comments.post == post)
         return render_template('post.html', post=post, comments=comments, user=current_user)
-    
     return f'Post with id = {id} does not exist'
 
  
